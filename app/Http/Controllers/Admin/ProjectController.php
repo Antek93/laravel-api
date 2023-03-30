@@ -133,28 +133,29 @@ class ProjectController extends Controller
             }
             foreach ($data['technologies'] as $techId) {
                 $project->technologies()->attach($techId);
+            }
+
+            //     //oppure
+            //     $project->technologies()->sync($data['technologies']);
+            // } else {
+            //     $project->technologies()->sync($data['']);
+            // }
+
+            $project->technologies()->sync($data['technologies']);
+
+            return redirect()->route('admin.projects.show', $project)->with('success', 'Progetto modificato con successo');
         }
 
-        //     //oppure
-        //     $project->technologies()->sync($data['technologies']);
-        // } else {
-        //     $project->technologies()->sync($data['']);
-        // }
-
-        $project->technologies()->sync($data['technologies']);
-
-        return redirect()->route('admin.projects.show', $project)->with('success', 'Progetto modificato con successo');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Project $project)
-    {
-        $project->delete();
-        return redirect()->route('admin.projects.index')->with('success', 'Progetto eliminato con successo');
+        /**
+         * Remove the specified resource from storage.
+         *
+         * @param  \App\Models\Project  $project
+         * @return \Illuminate\Http\Response
+         */
+        function destroy(Project $project)
+        {
+            $project->delete();
+            return redirect()->route('admin.projects.index')->with('success', 'Progetto eliminato con successo');
+        }
     }
 }
