@@ -126,14 +126,14 @@ class ProjectController extends Controller
         $project->update($data);
 
 
-        // if (array_key_exists('projects', $data)) {
+        if (array_key_exists('projects', $data)) {
 
             foreach ($project->technologies as $techId) {
                 $project->technologies()->detach($techId);
             }
             foreach ($data['technologies'] as $techId) {
                 $project->technologies()->attach($techId);
-            }
+        }
 
         //     //oppure
         //     $project->technologies()->sync($data['technologies']);
