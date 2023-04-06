@@ -111,6 +111,7 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
+
         $data = $request->validated();
 
         if (array_key_exists('imagn', $data)) {
@@ -122,17 +123,14 @@ class ProjectController extends Controller
             }
         }
 
-        $project->update($data);
+        // if (array_key_exists('projects', $data)) {
 
-
-        if (array_key_exists('projects', $data)) {
-
-            foreach ($project->technologies as $techId) {
-                $project->technologies()->detach($techId);
-            }
-            foreach ($data['technologies'] as $techId) {
-                $project->technologies()->attach($techId);
-            }
+            // foreach ($project->technologies as $techId) {
+            //     $project->technologies()->detach($techId);
+            // }
+            // foreach ($data['technologies'] as $techId) {
+            //     $project->technologies()->attach($techId);
+            // }
 
             //     //oppure
             //     $project->technologies()->sync($data['technologies']);
@@ -140,21 +138,33 @@ class ProjectController extends Controller
             //     $project->technologies()->sync($data['']);
             // }
 
-            $project->technologies()->sync($data['technologies']);
+            // $project->technologies()->sync($data['technologies']);
+
+            if (array_key_exists('technologies', $data)) {
+
+                $project->technologies()->sync($data['technologies']);
+    
+            } else {
+    
+                $project->technologies()->detach();
+    
+            }
+
+            $project->update($data);
 
             return redirect()->route('admin.projects.show', $project)->with('success', 'Progetto modificato con successo');
         }
 
-        /**
-         * Remove the specified resource from storage.
-         *
-         * @param  \App\Models\Project  $project
-         * @return \Illuminate\Http\Response
-         */
-        function destroy(Project $project)
-        {
-            $project->delete();
-            return redirect()->route('admin.projects.index')->with('success', 'Progetto eliminato con successo');
-        }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Project  $project
+     * @return \Illuminate\Http\Response
+     */
+
+     function destroy(Project $project)
+    {
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('success', 'Progetto eliminato con successo');
     }
-}
+};
