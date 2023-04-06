@@ -17,7 +17,13 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::with('category', 'type', 'technologies')->paginate(5);
+        $projects = Project::with('category', 'type', 'technologies')->paginate(20);
+
+        // foreach ($projects as $project) {
+        //     if ($project->imagn) {
+        //         $project->imagn = asset('storage/'.$project->imagn);
+        //     }
+        // }
         
         return response()->json([
             'success' => true,

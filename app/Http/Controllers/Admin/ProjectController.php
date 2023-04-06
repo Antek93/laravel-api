@@ -72,7 +72,7 @@ class ProjectController extends Controller
             }
         }
 
-        return redirect()->route('admin.projects.show', $newProject)->with('success', 'Progetto aggiunto con successo');
+        return redirect()->route('admin.projects.show', $newProject->id)->with('success', 'Progetto aggiunto con successo');
     }
 
     /**
@@ -118,10 +118,9 @@ class ProjectController extends Controller
             $data['imagn'] = $img_path;
 
             if ($project->imagn) {
-                Storage::delite($project->imagn);
+                Storage::delete($project->imagn);
             }
         }
-
 
         $project->update($data);
 

@@ -24,7 +24,6 @@ class ProjectSeeder extends Seeder
                 'name' => $faker->unique()->word(),
                 'description' => $faker->paragraph(),
                 'link' => $faker->sentence(),
-                'imagn' => $faker->imageUrl(640, 480, 'animals', true),
             ]);
         }
     }

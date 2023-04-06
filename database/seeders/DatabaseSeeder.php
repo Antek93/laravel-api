@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         CategorySeeder::class,
         ProjectSeeder::class,
         TypeSeeder::class,
-        Technology::class,
+        TechnologySeeder::class,
       ]);
     }
 }
