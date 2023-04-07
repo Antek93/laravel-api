@@ -9,8 +9,8 @@
                     Tutti i miei progetti
                 </h1>
             </div>
-            <div class="row justify-content-center py-4">
-                <div class="col-12 d-flex">
+            <div class="row justify-content-center py-5">
+                <div class="col-6 d-flex">
                     <a href="{{ route('admin.projects.create') }}">
                         <button class="btn btn-success">
                             Aggiungi un progetto
@@ -61,17 +61,17 @@
                     </div>
                     <div class="d-flex justy-content-between">
                         <div>
-                            <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-primary">
+                            <a href="{{ route('admin.hosts.show', $project->id) }}" class="btn btn-primary">
                                 Vedi Dettagli
                             </a>
                         </div>
                         <div>
-                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning mx-2">
+                            <a href="{{ route('admin.hosts.edit', $project->id) }}" class="btn btn-warning mx-2">
                                 Modifica
                             </a>
                         </div>
                         <div>
-                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST"
+                            <form action="{{ route('admin.hosts.destroy', $project->id) }}" method="POST"
                                 onsubmit="return confirm('Sei sicuro di voler eliminare questo progetto?')">
                                 @csrf
                                 @method('DELETE')
